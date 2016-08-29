@@ -43,6 +43,7 @@ var addEmployee = function(){
     salaries.push(parseInt(newEmployee.annualSalary));
     // display employees
     displayEmployees();
+    displaySalaries();
   } // end all needed inputs filled in
 } // end addEmployee
 
@@ -61,17 +62,25 @@ var displayEmployees = function(){
   // empty our div element
   document.getElementById('allEmployees').innerHTML='';
   // for each employee, add a list item with first name, last name, ID number, job title, annual salary
-  for( var i = 0; i < employees.length; i++ ){
+  for (var i = 0; i < employees.length; i++){
     // employee information (first name, last name, ID number, job title, annual salary)
     var employeeInfo = '<p>' + 'Name: ' + employees[i].firstName + ' ' + employees[i].lastName + '<br>';
     // atom freaked out so I had to break the variable up
     employeeInfo += 'Employee ID Number: #' + employees[i].numId + '<br>' + ' Job Title: ' + employees[i].jobTitle + '<br>' + ' Annual Salary: $' + employees[i].annualSalary + '<br>' + '<button onClick="youreFired(' + i + ')">Fire Me!</button></p>';
     // append employee info to output div
     document.getElementById('allEmployees').innerHTML += employeeInfo;
-  } // end for loop
+  } // end employee display for loop
 } // end displayEmployees
 
-// var totalSalaries = 0;
+var displaySalaries = function() {
+  console.log('in displaySalaries');
+  console.log(salaries);
+  var totalSalaries = 0;
+  for (var i = 0; i < salaries.length; i++){
+    totalSalaries += salaries[i];
+  }
+  document.getElementById('allSalaries').innerHTML += '<p>' + totalSalaries + '</p>';
+}
 
 var youreFired = function(index) {
     console.log('firing ' + employees[index].firstName + ' ' + employees[index].lastName);
