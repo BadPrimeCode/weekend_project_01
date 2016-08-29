@@ -1,8 +1,6 @@
 // to do:
-// create calculated annual salary total
-// display annual salary total with results on DOM
-// subtract fired employee salary from total
-// style that shit
+// comment this thing out
+// make it prettier
 // -------------------------------
 
 // // For your weekend challenge, you will need to create an application that
@@ -75,11 +73,12 @@ var displayEmployees = function(){
 var displaySalaries = function() {
   console.log('in displaySalaries');
   console.log(salaries);
+  document.getElementById('allSalaries').innerHTML='';
   var totalSalaries = 0;
   for (var i = 0; i < salaries.length; i++){
     totalSalaries += salaries[i];
   }
-  document.getElementById('allSalaries').innerHTML += '<p>' + totalSalaries + '</p>';
+  document.getElementById('allSalaries').innerHTML += '<p>' + 'Monthly Cost of Salaries: $' + (totalSalaries/12).toFixed(2);
 }
 
 var youreFired = function(index) {
@@ -90,6 +89,7 @@ var youreFired = function(index) {
     salaries.splice(index, 1);
     // show employees
     displayEmployees();
+    displaySalaries();
 }; // end youreFired
 
 // A 'Submit' button should clear out the inputs and your logic should store that
