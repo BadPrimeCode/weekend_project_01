@@ -1,24 +1,7 @@
-// to do:
-// comment this thing out
-// make it prettier
-// -------------------------------
-
-// // For your weekend challenge, you will need to create an application that
-// records employees along with their salary. We also want to add the salaries up
-// so we know how much we’re spending each month.
 console.log('script.js sourced');
 
 var employees=[];
 var salaries = [];
-
-// The application should first have an input form that collects the following:
-//
-// Employee First Name
-// Employee Last Name
-// ID Number
-// Job Title
-// Annual Salary
-
 
 var addEmployee = function(){
   console.log('in addEmployee function');
@@ -38,9 +21,11 @@ var addEmployee = function(){
     clearInputs();
     // push employee into array
     employees.push(newEmployee);
+    // push salary into number array
     salaries.push(parseInt(newEmployee.annualSalary));
     // display employees
     displayEmployees();
+    // display salaries
     displaySalaries();
   } // end all needed inputs filled in
 } // end addEmployee
@@ -57,7 +42,7 @@ var clearInputs = function(){
 var displayEmployees = function(){
   console.log('in displayEmployees');
   console.log(employees);
-  // empty our div element
+  // empty employee div element
   document.getElementById('allEmployees').innerHTML='';
   // for each employee, add a list item with first name, last name, ID number, job title, annual salary
   for (var i = 0; i < employees.length; i++){
@@ -73,28 +58,26 @@ var displayEmployees = function(){
 var displaySalaries = function() {
   console.log('in displaySalaries');
   console.log(salaries);
+  // empty salary div element
   document.getElementById('allSalaries').innerHTML='';
+  // for each employee, add salary to monthly total
   var totalSalaries = 0;
   for (var i = 0; i < salaries.length; i++){
     totalSalaries += salaries[i];
   }
+  // display annual salary total divided by 12, to two decimal points because cents
   document.getElementById('allSalaries').innerHTML += '<p>' + 'Monthly Cost of Salaries: $' + (totalSalaries/12).toFixed(2);
 }
 
 var youreFired = function(index) {
+  // oh no! this employee is fired!
     console.log('firing ' + employees[index].firstName + ' ' + employees[index].lastName);
     // splice the employee at this index from array
-    // ARRAY.splice( INDEX, NUMBERTOREMOVE)
     employees.splice(index, 1);
+      // splice the salary at this index from array
     salaries.splice(index, 1);
-    // show employees
+    // show new list of employees
     displayEmployees();
+    // show new salary total
     displaySalaries();
 }; // end youreFired
-
-// A 'Submit' button should clear out the inputs and your logic should store that
-// information. Then, that information should be appended to the DOM so the user of
-// the application can see the information they just entered.
-//
-// Finally, your logic should calculate all of the employee salaries and report
-// back the Monthly cost of salaries.
